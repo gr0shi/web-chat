@@ -13,10 +13,12 @@ import { EnterSubmitDirective } from '../../shared/EnterSubmit.directive';
   styleUrl: './message-form.component.css'
 })
 export class MessageFormComponent {
+  name = 'user';
   chatMessage = '';
 
   submitMessage() {
     console.log('Отправлено:', this.chatMessage);
+    localStorage.setItem(this.name, this.chatMessage);
     this.chatMessage = '';
   }
 }
