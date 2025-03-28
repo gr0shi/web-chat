@@ -4,7 +4,9 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
-import { EnterSubmitDirective } from '../../shared/EnterSubmit.directive';
+import { MessageService } from '../../shared/services/Message.service';
+
+import { EnterSubmitDirective } from '../../shared/directives/EnterSubmit.directive';
 
 @Component({
   selector: 'app-message-form',
@@ -13,12 +15,12 @@ import { EnterSubmitDirective } from '../../shared/EnterSubmit.directive';
   styleUrl: './message-form.component.css'
 })
 export class MessageFormComponent {
-  name = 'user';
+  constructor(private messageService: MessageService) { }
   chatMessage = '';
 
   submitMessage() {
     console.log('Отправлено:', this.chatMessage);
-    localStorage.setItem(this.name, this.chatMessage);
+    this.messageService.setMessage(this.chatMessage);
     this.chatMessage = '';
   }
 }
