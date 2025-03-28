@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './User.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
   private readonly MESSAGES_KEY = 'chat_messages';
+  private messagesSubject = new BehaviorSubject<any[]>(this.getMessages())
+
+  messages$ = this.messagesSubject.asObservable();
 
   constructor(private userService: UserService) {}
 
@@ -25,5 +29,6 @@ export class MessageService {
     };
     messages.push(newMessage);
     localStorage.setItem(this.MESSAGES_KEY, JSON.stringify(messages));
+    this.messagesSubject.next(messages);
   }
 }

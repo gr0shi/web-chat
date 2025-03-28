@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MessageService } from '../../shared/services/Message.service';
-import { UserService } from '../../shared/services/User.service';
+// import { UserService } from '../../shared/services/User.service';
 
 // import { MessageListComponent } from '../message-list/message-list.component';
 
@@ -28,16 +28,13 @@ export class MessageFormComponent {
   newMessage: string = '';
 
   constructor(
-    public userService: UserService,
     private messageService: MessageService,
-    // private messageListComponent: MessageListComponent
   ) {}
 
   sendMessage(): void {
     if (this.newMessage.trim()) {
       this.messageService.addMessage(this.newMessage.trim());
       this.newMessage = '';
-      // this.messageListComponent.loadMessages();
     }
   }
 }
