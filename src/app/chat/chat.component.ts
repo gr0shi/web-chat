@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserService } from '../shared/services/User.service';
 
-import { MessageListComponent } from "./message-list/message-list.component";
+import { MessageListComponent } from './message-list/message-list.component';
 import { MessageFormComponent } from "./message-form/message-form.component";
 import { UsernameModalComponent } from "./UsernameModal/UsernameModal.component";
 
@@ -16,7 +16,7 @@ import { UsernameModalComponent } from "./UsernameModal/UsernameModal.component"
 export class ChatComponent {
   constructor(public userService: UserService) {}
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {}
 
   onUsernameSaved(): void {
     console.log('Имя пользователя сохранено');

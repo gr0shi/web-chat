@@ -4,8 +4,8 @@
     <input
       matInput #message maxlength="256"
       placeholder="Введите сообщение:"
-      appEnterSubmit (appEnterSubmit)="submitMessage()"
-      [(ngModel)]="chatMessage"
+      appEnterSubmit (appEnterSubmit)="sendMessage()"
+      [(ngModel)]="newMessage"
       name="chatMessage">
     <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
   </mat-form-field>
@@ -16,7 +16,7 @@
     <button
       mat-raised-button
       type="submit"
-      (click)="submitMessage()">
+      (click)="sendMessage()">
         Отправить
     </button>
     <!-- <button mat-raised-button disabled>Отправить отключено</button> -->
