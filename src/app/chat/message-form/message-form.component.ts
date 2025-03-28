@@ -5,9 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MessageService } from '../../shared/services/Message.service';
-// import { UserService } from '../../shared/services/User.service';
-
-// import { MessageListComponent } from '../message-list/message-list.component';
+import { UserService } from '../../shared/services/User.service';
 
 import { EnterSubmitDirective } from '../../shared/directives/EnterSubmit.directive';
 
@@ -29,11 +27,15 @@ export class MessageFormComponent {
 
   constructor(
     private messageService: MessageService,
+    private userService: UserService
   ) {}
 
   sendMessage(): void {
-    if (this.newMessage.trim()) {
-      this.messageService.addMessage(this.newMessage.trim());
+    if (this.newMessage.trim() && this.userService.getUsername()) {
+      this.messageService.addMessage(
+        this.newMessage.trim(),
+        this.userService.getUsername()!
+      );
       this.newMessage = '';
     }
   }
