@@ -1,0 +1,8 @@
+<div class="modal" *ngIf="!userService.hasUsername()">
+  <div class="modal-content">
+    <h2>Добро пожаловать в чат!</h2>
+    <p>Пожалуйста, введите ваше имя:</p>
+    <input [(ngModel)]="username" placeholder="Ваше имя" />
+    <button (click)="saveUsername()">Сохранить</button>
+  </div>
+</div>

@@ -1,3 +1,10 @@
-<p>chat works!</p>
-<app-message-list></app-message-list>
-<app-message-form></app-message-form>
+<app-username-modal
+  *ngIf="!userService.hasUsername()"
+  (usernameSaved)="onUsernameSaved()">
+</app-username-modal>
+
+<div *ngIf="userService.hasUsername()">
+  <h2>Добро пожаловать, {{ userService.getUsername() }}!</h2>
+  <app-message-list></app-message-list>
+  <app-message-form></app-message-form>
+</div>
