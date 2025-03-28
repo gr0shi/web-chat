@@ -38,12 +38,10 @@ export class MessageService implements OnDestroy {
       time: new Date().toISOString(),
       tabId: this.tabId // Добавляем идентификатор вкладки
     };
-
     const messages = this.getMessages();
     messages.push(newMessage);
     localStorage.setItem(this.MESSAGES_KEY, JSON.stringify(messages));
     this.messagesSubject.next(messages);
-
     this.broadcastChannel.postMessage({
       type: 'NEW_MESSAGE',
       payload: newMessage,
