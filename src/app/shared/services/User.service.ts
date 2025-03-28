@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-
-  private readonly USERNAME_KEY = 'chatUsername';
+  private readonly USERNAME_KEY = 'chat_username';
 
   getUsername(): string | null {
     return localStorage.getItem(this.USERNAME_KEY);
@@ -18,5 +17,4 @@ export class UserService {
   hasUsername(): boolean {
     return this.getUsername() !== null;
   }
-
 }

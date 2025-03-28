@@ -1,5 +1,13 @@
 <mat-card class="messages-card" appearance="outlined">
   <mat-card-content>
-    <app-message-user></app-message-user>
+    <div class="chat-container">
+      <div class="messages-container">
+        <div *ngFor="let message of messages" class="message">
+          <span class="author">{{message.author}}:</span>
+          <span class="text">{{message.text}}</span>
+          <!-- <span class="time">{{message.time | date:'shortTime'}}</span> -->
+        </div>
+      </div>
+    </div>
   </mat-card-content>
 </mat-card>

@@ -5,20 +5,25 @@ import { UserService } from './User.service';
   providedIn: 'root'
 })
 export class MessageService {
+  private readonly MESSAGES_KEY = 'chat_messages';
 
   constructor(private userService: UserService) {}
 
-  private getMessageKey(): string {
-    const username = this.userService.getUsername();
-    return `user_${username}_messages`;
+  // Получаем все сообщения
+  getMessages(): any[] {
+    const messages = localStorage.getItem(this.MESSAGES_KEY);
+    return messages ? JSON.parse(messages) : [];
   }
 
-  getMessage(): string | null {
-    return localStorage.getItem(this.getMessageKey());
+  // Добавляем новое сообщение
+  addMessage(message: string): void {
+    const messages = this.getMessages();
+    const newMessage = {
+      text: message,
+      author: this.userService.getUsername(),
+      time: new Date().toISOString()
+    };
+    messages.push(newMessage);
+    localStorage.setItem(this.MESSAGES_KEY, JSON.stringify(messages));
   }
-
-  setMessage(chatMessage: string): void {
-    localStorage.setItem(this.getMessageKey(), chatMessage);
-  }
-
 }
