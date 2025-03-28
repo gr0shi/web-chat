@@ -1,6 +1,5 @@
 import { Injectable, OnDestroy, NgZone } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
