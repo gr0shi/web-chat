@@ -8,30 +8,30 @@
 1. Для начала, нужно скачать файлы из репозитория, для этого, в ветке `release/1.0.0` или `main` нажмите на зеленую кнопку **Code** и **Download ZIP**
 
 2. Если не установлены **NodeJS** и **Angular CLI**:
-  
+
     2.1. Чтобы установить **NodeJS**, перейдите по [ссылке](https://nodejs.org/en/). На всякий случай рекомендуется проверить наличие **NodeJS**, когда установите, войдите в терминал и введите следующую команду:
 
-    ``` PowerShell
-     node -v
-   ```
+      ``` PowerShell
+       node -v
+     ```
 
     2.2. Чтобы установить **Angular CLI**, Если вы пользователь Windows, то вам нужно включить выполнение сценариев PowerShell, так-как по умолчанию оно отключено, для этого введите в терминале от имени администратора следующее:
 
-   ``` PowerShell
-     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-   ```
+     ``` PowerShell
+       Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+     ```
 
     После команды выше, нужно установить сам **Angular CLI**:
 
-    ``` PowerShell
-     npm install -g @angular/cli
-   ```
+      ``` PowerShell
+       npm install -g @angular/cli
+     ```
 
     По завершению установки, можно проверить, установлен ли пакет:
 
-    ``` PowerShell
-     ng help
-   ```
+      ``` PowerShell
+       ng help
+     ```
 
     Когда все вышеперечисленные пакеты установлены, можете приступать к следующим шагам.
 
