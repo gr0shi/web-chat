@@ -30,7 +30,7 @@ export class MessageListComponent implements OnInit, OnDestroy {
   }
 
   trackByMessage(index: number, message: any): string {
-    return message.timestamp + message.tabId; // Уникальный ключ для трекинга
+    return message.time + message.tabId; // Уникальный ключ для трекинга
   }
 
   ngOnDestroy(): void {

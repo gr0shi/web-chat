@@ -2,7 +2,7 @@
   <mat-card-content>
     <div class="chat-container">
       <div class="messages-container">
-        <div *ngFor="let message of messages" class="message">
+        <div *ngFor="let message of messages; trackBy: trackByMessage" class="message">
           <span class="author">{{message.author}}:</span>
           <span class="text">{{message.text}}</span>
           <span class="time">{{message.time | date:'shortTime'}}</span>
