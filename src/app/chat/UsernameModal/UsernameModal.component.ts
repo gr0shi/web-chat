@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogActions, MatDialogTitle, MatDialogContent,  } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { UserService } from '../../shared/services/User.service';
 
@@ -8,7 +12,7 @@ import { EnterSubmitDirective } from '../../shared/directives/EnterSubmit.direct
 
 @Component({
   selector: 'app-username-modal',
-  imports: [ FormsModule, ReactiveFormsModule, CommonModule, EnterSubmitDirective ],
+  imports: [ FormsModule, ReactiveFormsModule, CommonModule, MatButtonModule, MatDialogActions, MatDialogTitle, MatDialogContent, MatFormFieldModule, MatInputModule, EnterSubmitDirective ],
   templateUrl: './UsernameModal.component.html',
   styleUrl: './UsernameModal.component.css'
 })

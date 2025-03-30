@@ -1,4 +1,4 @@
-<div class="modal" *ngIf="!userService.hasUsername()">
+<!-- <div class="modal" *ngIf="!userService.hasUsername()">
   <div class="modal-content">
     <h2>Добро пожаловать в чат!</h2>
     <p>Пожалуйста, введите ваше имя:</p>
@@ -7,6 +7,40 @@
     placeholder="Ваше имя"
     appEnterSubmit (appEnterSubmit)="saveUsername()"
     />
-    <button (click)="saveUsername()">Сохранить</button>
+    <mat-dialog-actions>
+      <button
+      mat-raised-button
+      type="submit"
+      [disabled]="!username?.trim()"
+      (click)="saveUsername()"
+    >Сохранить</button>
+    </mat-dialog-actions>
+  </div>
+</div> -->
+
+<div class="modal" *ngIf="!userService.hasUsername()">
+  <div class="modal-content">
+    <h2 mat-dialog-title>Добро пожаловать в чат!</h2>
+  <mat-dialog-content>
+    <p>Пожалуйста, введите ваше имя:</p>
+    <mat-form-field>
+      <mat-label>Имя пользователя</mat-label>
+      <input
+        matInput
+        title="username"
+        [(ngModel)]="username"
+        appEnterSubmit (appEnterSubmit)="saveUsername()"/>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        class="dialog-button"
+        mat-button
+        [disabled]="!username?.trim()"
+        (click)="saveUsername()">
+        Сохранить
+      </button>
+    </mat-dialog-actions>
   </div>
 </div>
+
