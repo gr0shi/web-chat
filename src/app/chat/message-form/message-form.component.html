@@ -16,9 +16,9 @@
     <button
       mat-raised-button
       type="submit"
+      [disabled]="!newMessage?.trim()"
       (click)="sendMessage()">
         Отправить
     </button>
-    <!-- <button mat-raised-button disabled>Отправить отключено</button> -->
   </div>
 </section>
