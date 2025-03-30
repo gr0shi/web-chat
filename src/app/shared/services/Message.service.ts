@@ -5,25 +5,31 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class MessageService implements OnDestroy {
-  private readonly MESSAGES_KEY = 'chat_messages';
-  private readonly channelName = 'chat_channel';
-  private broadcastChannel = new BroadcastChannel(this.channelName);
-  private destroy$ = new Subject<void>();
-  private tabId = Math.random().toString(36).substr(2, 9); // Уникальный ID вкладки
+  private readonly MESSAGES_KEY = 'chat_messages';                    // Ключ для хранения сообщений в localStorage
+  private readonly channelName = 'chat_channel';                      // Имя канала для BroadcastChannel
+  private broadcastChannel = new BroadcastChannel(this.channelName);  // Канал для межвкладкового взаимодействия
+  private destroy$ = new Subject<void>();                             // Subject для управления отпиской от observable
+  private tabId = Math.random().toString(36).substr(2, 9);            // Уникальный ID вкладки для идентификации сообщений
 
+  // BehaviorSubject для хранения текущего состояния сообщений
   private messagesSubject = new BehaviorSubject<any[]>(this.getMessages());
+  // Public observable для компонентов
   messages$ = this.messagesSubject.asObservable();
 
   constructor(private ngZone: NgZone) {
     this.setupChannelListener();
   }
 
+  // Настраивает обработчик сообщений из BroadcastChannel
   private setupChannelListener() {
     this.broadcastChannel.onmessage = (event) => {
-      this.ngZone.run(() => { // Запускаем в зоне Angular
+      // Запускаем обработку в зоне Angular, чтобы обновления UI работали корректно
+      this.ngZone.run(() => {
+        // Обработка нового сообщения из другой вкладки
         if (event.data.type === 'NEW_MESSAGE' && event.data.tabId !== this.tabId) {
           this.handleNewMessage(event.data.payload);
         }
+        // Обработка запроса синхронизации
         if (event.data.type === 'SYNC_REQUEST') {
           this.sendSyncResponse();
         }
@@ -35,20 +41,28 @@ export class MessageService implements OnDestroy {
     const newMessage = {
       text: message,
       author: author,
-      time: new Date().toISOString(),
-      tabId: this.tabId // Добавляем идентификатор вкладки
+      time: new Date().toISOString(), // Время
+      tabId: this.tabId // Идентификатор вкладки-отправителя
     };
+
+    // Получаем текущие сообщения и добавляем новое
     const messages = this.getMessages();
     messages.push(newMessage);
+
+    // Сохраняем в localStorage
     localStorage.setItem(this.MESSAGES_KEY, JSON.stringify(messages));
+    // Уведомляем подписчиков
     this.messagesSubject.next(messages);
+
+    // Отправляем сообщение в другие вкладки
     this.broadcastChannel.postMessage({
       type: 'NEW_MESSAGE',
       payload: newMessage,
-      tabId: this.tabId // Отправляем ID текущей вкладки
+      tabId: this.tabId
     });
   }
 
+  // Получает сообщения из localStorage
   getMessages(): any[] {
     const messages = localStorage.getItem(this.MESSAGES_KEY);
     return messages ? JSON.parse(messages) : [];
@@ -56,7 +70,8 @@ export class MessageService implements OnDestroy {
 
   private handleNewMessage(message: any) {
     const messages = this.getMessages();
-    if (!messages.some(m =>     // Проверяем, нет ли уже такого сообщения
+    // Проверяем, нет ли уже такого сообщения (защита от дублирования)
+    if (!messages.some(m =>
       m.time === message.time &&
       m.tabId === message.tabId
     )) {
@@ -66,6 +81,7 @@ export class MessageService implements OnDestroy {
     }
   }
 
+  // Отправляет текущее состояние сообщений в ответ на запрос синхронизации
   private sendSyncResponse() {
     this.broadcastChannel.postMessage({
       type: 'SYNC_RESPONSE',
@@ -73,10 +89,13 @@ export class MessageService implements OnDestroy {
     });
   }
 
+  // Запрашивает синхронизацию сообщений с другими вкладками
   requestSync() {
     this.broadcastChannel.postMessage({ type: 'SYNC_REQUEST' });
   }
 
+
+  // Очистка ресурсов при уничтожении сервиса
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
