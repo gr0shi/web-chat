@@ -4,9 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { UserService } from '../../shared/services/User.service';
 
+import { EnterSubmitDirective } from '../../shared/directives/EnterSubmit.directive';
+
 @Component({
   selector: 'app-username-modal',
-  imports: [ FormsModule, ReactiveFormsModule, CommonModule ],
+  imports: [ FormsModule, ReactiveFormsModule, CommonModule, EnterSubmitDirective ],
   templateUrl: './UsernameModal.component.html',
   styleUrl: './UsernameModal.component.css'
 })
