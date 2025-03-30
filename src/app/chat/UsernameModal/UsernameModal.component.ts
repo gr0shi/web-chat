@@ -12,7 +12,18 @@ import { EnterSubmitDirective } from '../../shared/directives/EnterSubmit.direct
 
 @Component({
   selector: 'app-username-modal',
-  imports: [ FormsModule, ReactiveFormsModule, CommonModule, MatButtonModule, MatDialogActions, MatDialogTitle, MatDialogContent, MatFormFieldModule, MatInputModule, EnterSubmitDirective ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatButtonModule,
+    MatDialogActions,
+    MatDialogTitle,
+    MatDialogContent,
+    MatFormFieldModule,
+    MatInputModule,
+    EnterSubmitDirective
+  ],
   templateUrl: './UsernameModal.component.html',
   styleUrl: './UsernameModal.component.css'
 })
