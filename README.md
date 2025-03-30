@@ -1,61 +1,44 @@
 # WebChat
+Тестовое задания для стажировки в **SWoyo**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## Как установить и запустить
 
-## Development server
+0. В первую очередь следует отметить, что вся разработка и тестирование проекта проводилось в браузере **Firefox**. В других браузерах тестирование не проводилось.
 
-To start a local development server, run:
+1. Для начала, нужно скачать файлы из репозитория, для этого, в ветке `release/1.0.0` или `main` нажмите на зеленую кнопку **Code** и **Download ZIP**
 
-```bash
-ng serve
-```
+2. После этого нужно установить **NodeJS**, перейдя по [ссылке](https://nodejs.org/en/). (Если он уже установлен на вашем компьютере, можете пропустить этот шаг)
+	На всякий случай проверьте наличие **NodeJS** при помощи следующей команды:
+	```PowerShell
+	  node -v
+	```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+3. Далее нужно установить **Angular CLI**. Если вы пользователь Windows, то вам нужно включить выполнение сценариев PowerShell, так-как по умолчанию оно отключено, для этого введите в терминале от имени администратора:
+	``` PowerShell
+	  Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+	```
+	После этой команды нужно ввести:
+	```PowerShell
+	  npm install -g @angular/cli
+	```
+	после установки, можно проверить, установлен ли пакет:
+	```PowerShell
+	  ng help
+	```
 
-## Code scaffolding
+4. Когда все вышеперечисленные пакеты установлены, нужно перейти в каталог с проектом в терминале:
+	```PowerShell
+	  cd //ПОЛНЫЙ ПУТЬ ПАПКИ С ПРОЕКТОМ//
+	```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+5. Нужно установить `node_modules`, для этого в терминале, когда вы находитесь в папке с проектом, нужно ввести следующую команду:
+	```PowerShell
+	  npm install
+	```
 
-```bash
-ng generate component component-name
-```
+6. И последнее:
+	```PowerShell
+	ng serve
+	```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-firefox_used
+  Как только сервер заработает, откройте браузер и перейдите по адресу: `http://localhost:4200/`.  
