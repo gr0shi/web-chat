@@ -1,15 +1,21 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { CommonModule } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
 
 import { MessageService } from './../../shared/services/Message.service';
 
 @Component({
   selector: 'app-message-list',
-  imports: [ MatCardModule, MatDividerModule, MatListModule, CommonModule ],
+  imports: [
+    MatCardModule,
+    MatDividerModule,
+    MatListModule,
+    CommonModule
+  ],
   templateUrl: './message-list.component.html',
   styleUrl: './message-list.component.css'
 })

@@ -1,6 +1,5 @@
 <app-username-modal
-  *ngIf="!userService.hasUsername()"
-  (usernameSaved)="onUsernameSaved()">
+  *ngIf="!userService.hasUsername()">
 </app-username-modal>
 
 <div *ngIf="userService.hasUsername()">

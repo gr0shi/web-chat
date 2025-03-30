@@ -9,16 +9,17 @@ import { UsernameModalComponent } from "./UsernameModal/UsernameModal.component"
 
 @Component({
   selector: 'app-chat',
-  imports: [ MessageListComponent, MessageFormComponent, UsernameModalComponent, CommonModule ],
+  imports: [
+    MessageListComponent,
+    MessageFormComponent,
+    UsernameModalComponent,
+    CommonModule
+  ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
 export class ChatComponent {
-  constructor(public userService: UserService) {}
-
-  ngOnInit(): void {}
-
-  onUsernameSaved(): void {
-    console.log('Имя пользователя сохранено');
-  }
+  constructor(
+    public userService: UserService
+  ) {}
 }
