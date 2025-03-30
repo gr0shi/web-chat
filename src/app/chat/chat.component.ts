@@ -19,5 +19,7 @@ import { UsernameModalComponent } from "./UsernameModal/UsernameModal.component"
   styleUrl: './chat.component.css'
 })
 export class ChatComponent {
-  constructor(public userService: UserService) {}
+  constructor(
+    public userService: UserService
+  ) {}
 }

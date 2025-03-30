@@ -32,7 +32,9 @@ export class UsernameModalComponent {
   username: string = '';
   @Output() usernameSaved = new EventEmitter<void>();
 
-  constructor(public userService: UserService) {}
+  constructor(
+    public userService: UserService
+  ) {}
 
   saveUsername(): void {
     if (this.username.trim()) {
