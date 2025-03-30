@@ -5,15 +5,18 @@
   margin-left: auto;
   margin-right: auto;
 }
+
 .message-full-width {
   width: 100%;
 }
+
 .dialog-button {
   float: right;
   position: absolute;
   margin-left: 16px;
   height: 56px;
 }
+
 .input-message {
   position: fixed;
   bottom: 0;
