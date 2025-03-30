@@ -3,6 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogActions } from '@angular/material/dialog';
 
 import { MessageService } from '../../shared/services/Message.service';
 import { UserService } from '../../shared/services/User.service';
@@ -17,6 +18,7 @@ import { EnterSubmitDirective } from '../../shared/directives/EnterSubmit.direct
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogActions,
     EnterSubmitDirective
   ],
   templateUrl: './message-form.component.html',

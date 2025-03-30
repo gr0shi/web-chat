@@ -1,13 +1,22 @@
-<mat-card class="messages-card" appearance="outlined">
-  <mat-card-content>
-    <div class="chat-container">
-      <div class="messages-container">
-        <div *ngFor="let message of messages; trackBy: trackByMessage" class="message">
-          <span class="author">{{message.author}}:</span>
-          <span class="text">{{message.text}}</span>
-          <span class="time">{{message.time | date:'shortTime'}}</span>
+<div class="chat-container">
+  <mat-card appearance="outlined" class="messages-card">
+    <div class="messages-list">
+      <div *ngIf="messages.length === 0" class="welcome-message">
+        <div matLine>
+          <b class="author">Система</b>
+          <span class="time">{{welcomeTime | date:'shortTime'}}</span>
         </div>
+        <span matLine class="message">Добро пожаловать в чат! Начните общение, отправив первое сообщение.</span>
+        <mat-divider style="margin-top: 8px; margin-bottom: 8px;"></mat-divider>
+      </div>
+      <div *ngFor="let message of messages; trackBy: trackByMessage">
+        <div matLine>
+          <b class="author">{{message.author}} </b>
+          <span class="time">{{message.time | date:'shortTime'}} </span>
+        </div>
+        <span matLine class="message"> {{message.text}} </span>
+        <mat-divider style="margin-top: 8px; margin-bottom: 8px;"></mat-divider>
       </div>
     </div>
-  </mat-card-content>
-</mat-card>
+  </mat-card>
+</div>

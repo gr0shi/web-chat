@@ -1,5 +1,5 @@
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -12,6 +12,14 @@
 }
 .modal-content {
   background: white;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 34px;
+  padding-right: 46px;
+  border-radius: 16px;
+  position: relative;
+}
+.dialog-button {
+  float: right;
+  position: absolute;
+  margin-left: 16px;
+  height: 56px
 }

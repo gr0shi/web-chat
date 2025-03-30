@@ -1,8 +1,28 @@
 <div class="modal" *ngIf="!userService.hasUsername()">
   <div class="modal-content">
-    <h2>Добро пожаловать в чат!</h2>
+    <h2 mat-dialog-title>Добро пожаловать в чат!</h2>
+  <mat-dialog-content>
     <p>Пожалуйста, введите ваше имя:</p>
-    <input [(ngModel)]="username" placeholder="Ваше имя" />
-    <button (click)="saveUsername()">Сохранить</button>
+    <mat-form-field>
+      <mat-label>Имя пользователя</mat-label>
+      <input
+        matInput
+        #user maxlength="32"
+        title="username"
+        [(ngModel)]="username"
+        appEnterSubmit (appEnterSubmit)="saveUsername()"/>
+        <mat-hint align="end">{{user.value.length}} / 32</mat-hint>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        class="dialog-button"
+        mat-button
+        [disabled]="!username.trim()"
+        (click)="saveUsername()">
+        Сохранить
+      </button>
+    </mat-dialog-actions>
   </div>
 </div>
+
