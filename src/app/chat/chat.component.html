@@ -4,7 +4,7 @@
 </app-username-modal>
 
 <div *ngIf="userService.hasUsername()">
-  <h2>Добро пожаловать, {{ userService.getUsername() }}!</h2>
+  <h2 style="text-align: center;">Ваше имя: {{ userService.getUsername() }}</h2>
   <app-message-list></app-message-list>
   <app-message-form></app-message-form>
 </div>
