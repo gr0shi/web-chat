@@ -1,23 +1,24 @@
-<form class="message-form">
-  <mat-form-field class="message-full-width">
-    <mat-label>Сообщение</mat-label>
-    <input
-      matInput
-      placeholder="Введите сообщение:"
-      appEnterSubmit (appEnterSubmit)="sendMessage()"
-      [(ngModel)]="newMessage"
-      name="chatMessage">
-  </mat-form-field>
-</form>
+<div style="text-align: center;">
+  <form class="message-form">
+    <mat-form-field class="message-full-width">
+      <mat-label>Сообщение</mat-label>
+      <input
+        matInput
+        placeholder="Введите сообщение:"
+        appEnterSubmit (appEnterSubmit)="sendMessage()"
+        [(ngModel)]="newMessage"
+        name="chatMessage">
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        class="dialog-button"
+        type="submit"
+        [disabled]="!newMessage.trim()"
+        (click)="sendMessage()">
+          Отправить
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>
 
-<section>
-  <div class="button-row">
-    <button
-      mat-raised-button
-      type="submit"
-      [disabled]="!newMessage?.trim()"
-      (click)="sendMessage()">
-        Отправить
-    </button>
-  </div>
-</section>
