@@ -1,6 +1,6 @@
 <div class="chat-container">
   <mat-card appearance="outlined" class="messages-card">
-    <div class="messages-list">
+    <div class="messages-list" #messagesContainer>
       <div *ngIf="messages.length === 0" class="welcome-message">
         <div matLine>
           <b class="author">Система</b>

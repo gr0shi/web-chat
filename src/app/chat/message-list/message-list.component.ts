@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -19,7 +19,9 @@ import { MessageService } from './../../shared/services/Message.service';
   templateUrl: './message-list.component.html',
   styleUrl: './message-list.component.css'
 })
-export class MessageListComponent implements OnInit, OnDestroy {
+export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked  {
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+
   messages: any[] = [];
   welcomeTime = new Date();
   private destroy$ = new Subject<void>();
@@ -36,6 +38,16 @@ export class MessageListComponent implements OnInit, OnDestroy {
         this.messages = [...messages];
         this.cdr.detectChanges();
       });
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+    } catch(err) { }
   }
 
   trackByMessage(index: number, message: any): string {
