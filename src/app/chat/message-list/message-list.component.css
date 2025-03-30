@@ -45,3 +45,8 @@
 .mat-list-item {
   align-items: flex-start !important;
 }
+
+.welcome-message {
+  color: #666;
+  font-style: italic;
+}

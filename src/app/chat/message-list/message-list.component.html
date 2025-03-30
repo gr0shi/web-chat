@@ -1,6 +1,14 @@
 <div class="chat-container">
   <mat-card appearance="outlined" class="messages-card">
     <div class="messages-list">
+      <div *ngIf="messages.length === 0" class="welcome-message">
+        <div matLine>
+          <b class="author">Система</b>
+          <span class="time">{{welcomeTime | date:'shortTime'}}</span>
+        </div>
+        <span matLine class="message">Добро пожаловать в чат! Начните общение, отправив первое сообщение.</span>
+        <mat-divider style="margin-top: 8px; margin-bottom: 8px;"></mat-divider>
+      </div>
       <div *ngFor="let message of messages; trackBy: trackByMessage">
         <div matLine>
           <b class="author">{{message.author}} </b>

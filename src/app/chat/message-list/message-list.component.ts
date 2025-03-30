@@ -15,6 +15,7 @@ import { MessageService } from './../../shared/services/Message.service';
 })
 export class MessageListComponent implements OnInit, OnDestroy {
   messages: any[] = [];
+  welcomeTime = new Date();
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -26,13 +27,13 @@ export class MessageListComponent implements OnInit, OnDestroy {
     this.messageService.messages$
       .pipe(takeUntil(this.destroy$))
       .subscribe(messages => {
-        this.messages = [...messages]; // Создаем новый массив
-        this.cdr.detectChanges(); // Принудительно запускаем обнаружение изменений
+        this.messages = [...messages];
+        this.cdr.detectChanges();
       });
   }
 
   trackByMessage(index: number, message: any): string {
-    return message.time + message.tabId; // Уникальный ключ для трекинга
+    return message.time + message.tabId;
   }
 
   ngOnDestroy(): void {
