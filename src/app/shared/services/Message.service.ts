@@ -18,11 +18,21 @@ export class MessageService implements OnDestroy {
 
   constructor(private ngZone: NgZone) {
     this.setupChannelListener();
+    window.addEventListener('storage', this.handleStorageEvent.bind(this));
+  }
+
+  private handleStorageEvent(event: StorageEvent): void {
+    if (event.key === this.MESSAGES_KEY) {
+      // Обновляем сообщения, если произошли изменения в localStorage
+      this.ngZone.run(() => {
+        this.messagesSubject.next(this.getMessages());
+      });
+    }
   }
 
   // Настраивает обработчик сообщений из BroadcastChannel
   private setupChannelListener() {
-    this.broadcastChannel.onmessage = (event) => {
+    this.broadcastChannel.addEventListener('message', (event) => {
       // Запускаем обработку в зоне Angular, чтобы обновления UI работали корректно
       this.ngZone.run(() => {
         // Обработка нового сообщения из другой вкладки
@@ -34,7 +44,7 @@ export class MessageService implements OnDestroy {
           this.sendSyncResponse();
         }
       });
-    };
+    });
   }
 
   addMessage(message: string, author: string): void {
