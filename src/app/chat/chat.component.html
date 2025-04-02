@@ -1,5 +1,5 @@
 <app-username-modal
-  *ngIf="!userService.hasUsername()">
+  *ngIf="isBrowser && !userService.hasUsername()">
 </app-username-modal>
 
 <div *ngIf="userService.hasUsername()">
