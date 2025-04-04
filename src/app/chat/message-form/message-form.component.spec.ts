@@ -1,23 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MessageFormComponent } from './message-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogActions } from '@angular/material/dialog';
 
-describe('MessageFormComponent', () => {
-  let component: MessageFormComponent;
-  let fixture: ComponentFixture<MessageFormComponent>;
+import { MessageService } from '../../shared/services/Message.service';
+import { UserService } from '../../shared/services/User.service';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MessageFormComponent]
-    })
-    .compileComponents();
+import { EnterSubmitDirective } from '../../shared/directives/EnterSubmit.directive';
 
-    fixture = TestBed.createComponent(MessageFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+@Component({
+  selector: 'app-message-form',
+  imports: [
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatDialogActions,
+    FormsModule,
+    ReactiveFormsModule,
+    EnterSubmitDirective
+  ],
+  templateUrl: './message-form.component.html',
+  styleUrl: './message-form.component.css'
+})
+export class MessageFormComponent {
+  newMessage: string = '';
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  constructor(
+    private messageService: MessageService,
+    private userService: UserService
+  ) {}
+
+  sendMessage(): void {
+    if (this.newMessage.trim() && this.userService.getUsername()) {
+      this.messageService.addMessage(
+        this.newMessage.trim(),
+        this.userService.getUsername()!
+      );
+      this.newMessage = '';
+    }
+  }
+}
