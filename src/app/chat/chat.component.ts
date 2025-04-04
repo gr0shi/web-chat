@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { UserService } from '../shared/services/User.service';
 
@@ -18,15 +18,8 @@ import { UsernameModalComponent } from "./UsernameModal/UsernameModal.component"
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
-export class ChatComponent implements OnInit {
-  isBrowser = false;
-
+export class ChatComponent {
   constructor(
-    public userService: UserService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    public userService: UserService
   ) {}
-
-  ngOnInit(): void {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
 }
